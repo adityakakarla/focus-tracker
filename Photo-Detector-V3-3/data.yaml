@@ -1,0 +1,12 @@
+names:
+- phone
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: photo-detector-v3
+  url: https://universe.roboflow.com/aditya-kakarla-wfuyi/photo-detector-v3/dataset/3
+  version: 3
+  workspace: aditya-kakarla-wfuyi
+test: ../test/images
+train: Photo-Detector-V3-3/train/images
+val: Photo-Detector-V3-3/valid/images
