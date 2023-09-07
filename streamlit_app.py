@@ -10,17 +10,21 @@ rf = Roboflow(api_key="NBUvQ56DQdrvX3vNmz90")
 project = rf.workspace().project("photo-detector-v3")
 model = project.version(3).model
 
-image = camera_input_live()
-st.image(image)
+image = st.file_uploader(label='Upload a PNG or JPG file', type=['png','jpg'])
 
-with open('input_image.jpg', 'wb') as f:
-    f.write(image.getvalue())
+if image:
+    st.image(image)
 
-result = model.predict('input_image.jpg', confidence=40, overlap=30).json()
+    with open('input_image.jpg', 'wb') as f:
+        f.write(image.getvalue())
 
-if len(result['predictions']) >= 1:
-    playsound('phone.mp3')
-    time.sleep(1)
+    result = model.predict('input_image.jpg', confidence=40, overlap=30).json()
+
+    if len(result['predictions']) >= 1:
+        st.write('You are off task')
+        playsound('phone.mp3')
+    else:
+        st.write('You are on task')
 
 
     
